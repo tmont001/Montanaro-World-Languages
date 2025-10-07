@@ -1,0 +1,22 @@
+@use "../abstracts/variables" as *; // pull tokens into local scope
+@use "sass:color";
+
+.sticky-cta {
+  position: fixed;
+  width: 100vw;
+  inset: auto 0 0 0;
+  background: $white;
+  backdrop-filter: blur(6px);
+  border-top: 1px solid $grey-light-1;
+  display: none;
+  gap: 10px;
+  justify-content: center;
+  padding: 10px;
+  z-index: 50;
+}
+
+@media (max-width: 960px) {
+  .sticky-cta {
+    display: flex;
+  }
+}

@@ -1,0 +1,49 @@
+// _variables.scss — Simplified tokens (Dart Sass module-friendly)
+
+@use "sass:color";
+
+// Base palette
+$international-klein-blue: #0324be;
+$congress-blue:            #03358d;
+$apple:                    #63b93e;
+$torch-red:                #fc1245;
+$cerulean:                 #0689de;
+$ripe-lemon:               #f4c81c;
+$french-rose:              #f64774;
+$endeavour:                #01589e;
+$scooter:                  #26b5d7;
+
+// Neutrals
+$white: #ffffff;
+$black: #000000;
+$grey-dark-2:  #111217;
+$grey-dark-1:  #2b2f36;
+$grey-light-1: #e7eaee;
+$grey-light-2: #f6f8fb;
+
+// Roles (primary, secondary, tertiary)
+$color-primary:        $international-klein-blue;
+$color-primary-light:  color.mix(#ffffff, $color-primary, 30%);
+$color-primary-dark:   color.mix(#000000, $color-primary, 20%);
+
+$color-secondary:        $apple;
+$color-secondary-light:  color.mix(#ffffff, $color-secondary, 30%);
+$color-secondary-dark:   color.mix(#000000, $color-secondary, 20%);
+
+$color-tertiary:        $french-rose;
+$color-tertiary-light:  color.mix(#ffffff, $color-tertiary, 30%);
+$color-tertiary-dark:   color.mix(#000000, $color-tertiary, 20%);
+
+// Semantics
+$color-success: $apple;
+$color-warning: $ripe-lemon;
+$color-error:   $torch-red;
+$color-info:    $cerulean;
+$color-accent:  $scooter;
+
+// Shadows
+$shadow-sm:  0 1px 2px rgba(0,0,0,0.06);
+$shadow-md:  0 2px 6px rgba(0,0,0,0.10), 0 1px 2px rgba(0,0,0,0.08);
+$shadow-lg:  0 8px 20px rgba(0,0,0,0.12), 0 3px 6px rgba(0,0,0,0.10);
+$shadow-xl:  0 16px 32px rgba(0,0,0,0.14), 0 6px 12px rgba(0,0,0,0.10);
+$shadow-2xl: 0 24px 48px rgba(0,0,0,0.18), 0 12px 24px rgba(0,0,0,0.12);

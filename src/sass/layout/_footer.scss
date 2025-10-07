@@ -1,0 +1,140 @@
+@use "../abstracts/variables" as *; // pull tokens into local scope
+@use "../abstracts/mixins" as *; // pull tokens into local scope
+
+.site-footer {
+  background: $color-primary; // your existing brand color
+  color: $white;
+  padding-block: 2.5rem;
+
+  a {
+    color: $white;
+    text-decoration: none;
+    transition: tranform color 0.2s ease;
+
+    &:hover {
+      transform: translateY(-1px);
+      color: $color-secondary;
+      text-decoration: none;
+    }
+  }
+}
+
+/* Container alignment */
+.site-footer .container {
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+}
+
+/* === Footer Grid === */
+.footer-grid {
+  display: grid;
+  gap: 2rem;
+  align-items: start;
+
+  /* Base mobile layout */
+  grid-template-columns: 1fr;
+
+  /* 3-column layout on larger screens */
+  @media (min-width: 768px) {
+    grid-template-columns: 2fr 1.2fr 1.2fr;
+  }
+}
+
+/* === Column 1: Brand section === */
+.foot-brand {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+
+  img {
+    width: auto;
+    height: 50%; // takes up half the container height
+    max-height: 120px;
+    margin-bottom: 0.75rem;
+    background-color: $white;
+    border-radius: 999rem;
+  }
+
+  strong {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+
+  p {
+    color: rgba($white, 0.9);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin: 0;
+  }
+}
+
+/* === Column 2: Contact === */
+.footer-grid .contact,
+.footer-grid .foot-contact {
+  min-width: 280px;
+  text-align: left;
+
+  a[href^="mailto:"] {
+    white-space: nowrap;
+  }
+
+  li {
+    padding: 0.3rem 0;
+  }
+}
+
+/* === Column 3: Explore === */
+.footer-grid .explore {
+  text-align: left;
+
+  .list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      padding: 0.3rem 0;
+    }
+  }
+}
+
+/* === Bottom copyright bar === */
+.footer-bottom {
+  border-top: 1px solid rgba($white, 0.2);
+  margin-top: 2rem;
+  padding-top: 1rem;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  text-align: center;
+
+  small {
+    font-size: 0.9rem;
+    opacity: 0.85;
+  }
+
+  @media (min-width: 640px) {
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: left;
+  }
+}
+
+/* Remove bullets globally for lists */
+.footer-grid ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .site-footer a {
+    transition: none;
+  }
+}

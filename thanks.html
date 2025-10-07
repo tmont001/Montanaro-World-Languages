@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Thank you — Montanaro World Languages</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/png" href="assets/images/logo-title.png" />
+    <link rel="stylesheet" href="public/css/main.css" />
+
+    <!-- Page-local polish just for this screen -->
+    <style>
+      :root {
+        /* fallbacks if your CSS vars aren't present */
+        --surface: #ffffff;
+        --text: #0b1220;
+        --muted: #556070;
+        --ring: #e6e8ee;
+        --radius: 16px;
+        --shadow-lg: 0 10px 30px rgba(3, 36, 190, 0.12);
+      }
+
+      .thanks-shell {
+        /* full-bleed center with breathing room */
+        display: grid;
+        min-height: 70svh;
+        place-items: center;
+        padding: clamp(24px, 5vw, 64px) 16px;
+        background: radial-gradient(
+            1200px 1200px at 10% -10%,
+            rgba(3, 53, 141, 0.06),
+            transparent 40%
+          ),
+          radial-gradient(
+            800px 800px at 110% 10%,
+            rgba(99, 185, 62, 0.07),
+            transparent 35%
+          );
+      }
+
+      .thanks-card {
+        max-width: 760px;
+        width: min(96vw, 760px);
+        background: var(--surface);
+        border: 1px solid var(--ring);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow-lg);
+        text-align: center;
+        padding: clamp(20px, 6vw, 56px);
+        animation: fadeUp 400ms ease-out both;
+      }
+
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(8px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Logo treatment: bigger, crisper, with gentle depth */
+      .thanks-logo {
+        display: block;
+        margin: 0 auto clamp(12px, 2vw, 20px);
+        width: clamp(200px, 44vw, 360px);
+        height: auto;
+        image-rendering: -webkit-optimize-contrast; /* Safari crispness */
+        filter: drop-shadow(0 8px 22px rgba(0, 0, 0, 0.12));
+      }
+
+      .thanks-card h1 {
+        margin: 0 0 0.5rem;
+        font-size: clamp(1.5rem, 2.5vw, 2rem);
+        line-height: 1.2;
+        color: var(--text);
+      }
+
+      .thanks-card p {
+        margin: 0;
+        color: var(--muted);
+        font-size: clamp(1rem, 1.5vw, 1.0625rem);
+      }
+
+      .btn-row {
+        margin-top: clamp(16px, 3vw, 24px);
+        display: flex;
+        gap: 0.75rem;
+        justify-content: center;
+        text-align: center;
+        flex-wrap: wrap;
+      }
+
+      /* Respect your existing buttons but ensure nice sizing here */
+      .btn-row .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        min-width: 180px;
+      }
+
+      /* Reduce header/footer visual weight on this "end state" page */
+      .site-header {
+        box-shadow: none;
+      }
+      .footer-bottom {
+        border-top: 1px solid var(--ring);
+      }
+
+      /* Optional: hide sticky CTA on thank-you (user just submitted) */
+      /* .sticky-cta { display: none; } */
+    </style>
+  </head>
+  <body>
+    <a href="#main" class="skip-link">Skip to content</a>
+
+    <!-- Header (unchanged) -->
+    <header class="site-header">
+      <div class="container header-inner">
+        <a
+          class="brand"
+          href="index.html"
+          aria-label="Montanaro World Languages home"
+        >
+          <img
+            class="header-logo"
+            src="assets/images/logo-mark.png"
+            width="56"
+            height="56"
+            alt="Montanaro logo"
+          />
+          <span class="brand-text">Montanaro World Languages</span>
+        </a>
+        <button
+          class="nav-toggle"
+          aria-expanded="false"
+          aria-controls="primary-navigation"
+          type="button"
+        >
+          <span class="sr-only">Menu</span>
+          <span class="hamburger" aria-hidden="true"></span>
+        </button>
+        <nav class="primary-nav" id="primary-navigation" aria-label="Primary">
+          <ul>
+            <li><a href="index.html#why">Why Virtual</a></li>
+            <li><a href="index.html#courses">Courses</a></li>
+            <li><a href="index.html#pricing">Pricing</a></li>
+            <li><a href="quiz-fr.html">French Placement</a></li>
+            <li><a href="quiz-sp.html">Spanish Placement</a></li>
+            <li><a href="faq.html">FAQs</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="terms.html">Terms</a></li>
+            <li>
+              <a class="btn btn-primary" href="index.html#enroll">Enroll</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Thank-you block -->
+    <main id="main" class="thanks-shell" role="main">
+      <section class="thanks-card" aria-labelledby="thanks-title">
+        <img
+          class="thanks-logo"
+          src="assets/images/logo-title.png"
+          alt="Montanaro World Languages logo"
+        />
+        <h1 id="thanks-title">Thank you for your submission!</h1>
+        <p>
+          We’ve received your enrollment request. You’ll get an email shortly
+          with next steps and further details.
+        </p>
+        <div class="btn-row">
+          <a class="btn btn-primary" href="index.html#courses">View Courses</a>
+          <a class="btn btn-outline" href="index.html">Back to Home</a>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer (unchanged) -->
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <div>
+          <div class="foot-brand">
+            <img
+              src="assets/images/logo-mark.png"
+              width="44"
+              height="44"
+              alt="Montanaro World Languages logo"
+            />
+            <strong>Montanaro World Languages</strong>
+          </div>
+          <p class="muted">
+            Virtual language tutoring for learners of all ages. Live,
+            interactive classes with expert tutors.
+          </p>
+        </div>
+        <div>
+          <strong>Contact</strong>
+          <ul class="list">
+            <li>
+              Email:
+              <a href="mailto:montanarowl@gmail.com">montanarowl@gmail.com</a>
+            </li>
+            <li>Phone: <a href="tel:+15185788556">+1 (518) 578-8556</a></li>
+            <li>Location: New York, NY</li>
+          </ul>
+        </div>
+        <div>
+          <strong>Explore</strong>
+          <ul class="list">
+            <li><a href="#courses">Courses</a></li>
+            <li><a href="#why">Why Virtual</a></li>
+            <li><a href="quiz-fr.html">French Placement</a></li>
+            <li><a href="quiz-sp.html">Spanish Placement</a></li>
+            <li><a href="faq.html">FAQs</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="terms.html">Terms</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="container footer-bottom">
+        <small
+          >© <span id="year"></span> Montanaro World Languages. All rights
+          reserved.</small
+        >
+        <small class="muted">ç · ñ · é</small>
+      </div>
+    </footer>
+
+    <div class="sticky-cta">
+      <a class="btn btn-primary" href="#enroll">Enroll</a>
+      <a
+        class="btn btn-outline"
+        href="mailto:montanarowl@gmail.com?subject=Question%20about%20courses"
+        >Ask a question</a
+      >
+    </div>
+  </body>
+</html>

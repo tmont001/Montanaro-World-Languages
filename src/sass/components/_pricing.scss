@@ -1,0 +1,61 @@
+@use "../abstracts/variables" as *; // pull tokens into local scope
+@use "sass:color";
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin: 10px 0;
+}
+
+.price-card {
+  padding: 10px;
+  border: 1px solid $grey-light-1;
+  border-radius: 12px;
+  background: $grey-light-2;
+}
+
+.price-card .huge {
+  font-size: 2rem;
+  font-weight: 800;
+}
+
+.fine {
+  color: $grey-dark-1;
+}
+
+.ref-card {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-items: center;
+  border: 1px solid $grey-light-1;
+  border-radius: 12px;
+  padding: 10px;
+  background: $grey-light-2;
+  flex-direction: column;
+}
+
+.ref-graphic {
+  width: 75%;
+  flex: 0 0 auto;
+}
+
+.price-breakdown .row {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 10px;
+  padding: 6px 0;
+  border-bottom: 1px dashed $color-secondary;
+}
+
+.price-breakdown .row:last-child {
+  border-bottom: 0;
+}
+
+.upcoming-note {
+  margin-top: 12px;
+  font-size: 2rem;
+  color: $color-secondary;
+  font-weight: 750;
+}

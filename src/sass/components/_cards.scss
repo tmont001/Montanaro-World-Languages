@@ -1,0 +1,86 @@
+@use "../abstracts/variables" as *; // pull tokens into local scope
+@use "../abstracts/mixins" as *;
+@use "sass:color";
+
+.cards-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.card {
+  background: $white;
+  border: 1px solid $grey-light-1;
+  border-radius: 16px;
+  padding: 18px;
+  box-shadow: $shadow-lg;
+
+  &--about {
+    align-items: center;
+  }
+}
+
+.card--interactive {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: default;
+  outline: 0;
+}
+
+.card--interactive:hover,
+.card--interactive:focus-within {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 40px $grey-light-1;
+}
+
+.card-img {
+  margin-top: 10px;
+  border-radius: 10px;
+  border: 1px solid $grey-light-1;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1.2rem;
+  gap: 0.35rem;
+  border-radius: 9999px; // full pill
+  font-size: 1.2rem;
+  line-height: 1;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  border: 1px solid transparent;
+  box-shadow: $shadow-md;
+  user-select: none;
+  vertical-align: middle;
+}
+
+.badge-green {
+  background: $color-secondary; // apple
+  color: $white;
+  border-color: rgba($black, 0.12);
+}
+
+.badge-blue {
+  background: $cerulean; // lighter blue than primary
+  color: $white;
+  border-color: rgba($black, 0.12);
+}
+
+.badge-red {
+  background: $color-tertiary;
+  color: $white;
+  border-color: rgba($black, 0.08);
+}
+
+@media (max-width: 960px) {
+  .cards-3 {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 680px) {
+  .cards-3 {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,52 @@
+@use "../abstracts/variables" as *; // pull tokens into local scope
+@use "sass:color";
+
+.levels {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.lvl-card {
+  // border:1px solid $grey-light-1;
+  border-radius: 10px;
+  padding: 14px;
+  box-shadow: $shadow-sm;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  &__:hover,
+  &__:focus-within {
+    transform: translateY(-3px);
+    box-shadow: 0 16px 40px $grey-dark-2;
+  }
+}
+
+.lvl-card:hover,
+.lvl-card:focus-within {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 40px $grey-dark-2;
+}
+
+.lvl-card-1 {
+  background-color: rgba($color-info, 0.5);
+}
+
+.lvl-card-2 {
+  background-color: rgba($color-secondary-light, 0.5);
+}
+
+.lvl-card-3 {
+  background-color: rgba($color-tertiary-light, 0.5);
+}
+
+@media (max-width: 960px) {
+  .levels {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .levels {
+    grid-template-columns: 1fr;
+  }
+}

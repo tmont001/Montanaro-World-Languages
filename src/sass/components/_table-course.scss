@@ -1,0 +1,99 @@
+@use "../abstracts/variables" as *; // pull tokens into local scope
+@use "sass:color";
+
+.course-table-wrap {
+  background: $grey-light-1; // the “gap” color
+  border-radius: 1.8rem;
+  padding: 8px; // equals your row gap
+  overflow: hidden; // ensures rounded clipping
+}
+
+.course-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 8px;
+  border-radius: 1.8rem;
+}
+
+.course-table thead th {
+  font-weight: 800;
+  text-align: left;
+  color: $grey-dark-2;
+  padding: 0 0.75rem 0.25rem;
+}
+
+.course-table tbody tr {
+  background: #fff;
+  border: 1px solid $color-primary;
+  box-shadow: $shadow-lg;
+  border-radius: 2rem;
+  background-color: $white;
+}
+
+.course-table td {
+  padding: 0.75rem 0.75rem;
+  vertical-align: top;
+}
+
+.course-table td.lvl {
+  font-weight: 800;
+}
+
+.course-table td.price {
+  white-space: nowrap;
+}
+
+.flag {
+  width: 2rem;
+  height: auto;
+  vertical-align: -3px;
+  margin-right: 6px;
+  border-radius: 2px;
+  box-shadow: $shadow-md;
+}
+
+@media (max-width: 680px) {
+  .course-table thead {
+    display: none;
+  }
+  .course-table tbody tr {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+    padding: 12px;
+  }
+  .course-table td {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 8px;
+    padding: 0;
+  }
+  .course-table td::before {
+    content: attr(data-label);
+    font-weight: 700;
+    color: $grey-dark-2;
+  }
+}
+
+.link {
+  background: transparent;
+  border: none;
+  color: $color-primary;
+  text-decoration: underline;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.time-line {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0.15rem 0;
+}
+
+.tab-panel[hidden] {
+  display: none;
+}
+.tab-panel.is-active {
+  display: block;
+}

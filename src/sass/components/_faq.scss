@@ -1,0 +1,55 @@
+@use "../abstracts/variables" as *; // pull tokens into local scope
+@use "sass:color";
+
+// FAQ component styles
+
+.faq-header {
+  margin: 2rem 0 1rem;
+}
+
+.faq-list {
+  details {
+    border: 1px solid $color-primary-light;
+    border-radius: 0.75rem;
+    background: $white;
+    margin-bottom: 0.75rem;
+
+    &:hover {
+      background: $grey-light-2;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px $grey-light-2;
+    }
+
+    summary {
+      list-style: none;
+      padding: 1rem 1.25rem;
+      font-weight: 600;
+      cursor: pointer;
+
+      &::-webkit-details-marker {
+        display: none;
+      }
+    }
+
+    &[open] summary {
+      border-bottom: 1px solid $color-primary;
+    }
+
+    .answer {
+      padding: 1rem 1.25rem;
+      line-height: 1.6;
+    }
+  }
+}
+
+/* Utility used elsewhere */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}

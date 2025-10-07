@@ -1,0 +1,64 @@
+@use "../abstracts/variables" as *; // pull tokens into local scope
+@use "sass:color";
+
+.hero {
+  position: relative;
+  padding: 128px 0 96px;
+  background: linear-gradient(
+    180deg,
+    $color-primary-dark 0%,
+    $color-primary-light 60%
+  );
+}
+
+.hero-title {
+  font-size: 2.4rem;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  height: 100%;
+  gap: 24px;
+  align-items: stretch;
+  align-self: center;
+}
+
+.grid-2 > * {
+  display: grid;
+  flex-direction: column;
+  align-items: center;
+}
+
+.eyebrow {
+  font-size: 1rem;
+  font-weight: 750;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: $color-secondary;
+  margin: 0 0 0.25rem;
+}
+
+.lead {
+  color: $grey-dark-1;
+  max-width: 60ch;
+}
+
+.cta-row {
+  display: flex;
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.hero-card {
+  background: $white;
+  border: 1px solid $grey-light-1;
+  border-radius: 16px;
+  padding: 18px;
+}
+
+@media (max-width: 960px) {
+  .grid-2 {
+    grid-template-columns: 1fr;
+  }
+}

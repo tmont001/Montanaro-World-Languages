@@ -1,0 +1,18 @@
+{
+  "name": "montanaro-world-languages",
+  "version": "7.1.1",
+  "private": true,
+  "scripts": {
+    "dev": "sass --watch src/sass/main.scss public/css/main.css",
+    "build": "sass --no-source-map --style=compressed src/sass/main.scss public/css/main.css",
+    "preview": "npx http-server . -p 5173 -c-1"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1",
+    "sass": "^1.77.0"
+  },
+  "dependencies": {
+    "glob": "^11.0.3",
+    "sharp": "^0.34.4"
+  }
+}

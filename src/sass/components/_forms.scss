@@ -1,0 +1,187 @@
+@use "../abstracts/variables" as *; // tokens: colors, spacing, shadows
+@use "sass:color";
+
+/* =============================
+   Enrollment Form (DRY / compact)
+   ============================= */
+
+/* Card */
+.form-card {
+  background: $white;
+  border: 1px solid $grey-light-2;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: $shadow-lg;
+}
+
+/* Grid */
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+}
+.full {
+  grid-column: 1 / -1;
+}
+
+/* Labels */
+.form-card label {
+  display: block;
+  font-weight: 600;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+.form-card label > input,
+.form-card label > select,
+.form-card label > textarea {
+  margin-top: 6px;
+}
+
+/* Fieldset reset */
+.form-card fieldset {
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+.form-card fieldset + fieldset {
+  margin-top: 8px;
+}
+.form-card legend {
+  font-weight: 700;
+  font-size: 1rem;
+  margin-bottom: 6px;
+}
+
+/* Controls: inputs, selects, textareas */
+$form-control-radius: 10px;
+$form-control-padding: 10px 12px;
+
+.form-card input:not([type="checkbox"]):not([type="radio"]),
+.form-card select,
+.form-card textarea {
+  width: 100%;
+  border: 1px solid $grey-light-1;
+  background: $white;
+  border-radius: $form-control-radius;
+  padding: $form-control-padding;
+  font-size: 1rem;
+  line-height: 1.4;
+  transition: border-color 150ms ease, box-shadow 150ms ease,
+    background-color 150ms ease;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+/* Placeholder (single declaration for all controls) */
+.form-card ::placeholder,
+.age_group {
+  color: $color-primary-light;
+}
+
+/* Focus (shared) */
+.form-card input:focus-visible,
+.form-card select:focus-visible,
+.form-card textarea:focus-visible {
+  outline: 2px solid transparent;
+  border-color: $grey-light-1;
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.06);
+}
+
+/* Disabled */
+.form-card input:disabled,
+.form-card select:disabled,
+.form-card textarea:disabled {
+  background: $grey-light-2;
+  color: $color-primary-light;
+  cursor: not-allowed;
+}
+
+/* Autofill parity */
+.form-card input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px $white inset !important;
+  -webkit-text-fill-color: inherit !important;
+  transition: background-color 50000s ease-in-out 0s;
+}
+
+/* Check/radio groups */
+.checkgroup {
+  display: grid;
+  gap: 8px 16px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+.checkgroup label {
+  font-weight: 500;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+.checkgroup input[type="checkbox"],
+.checkgroup input[type="radio"] {
+  margin-top: 2px;
+}
+
+/* Long copy checkbox (agreements) */
+.checkbox-long {
+  display: block;
+  font-weight: 500;
+  line-height: 1.5;
+}
+.checkbox-long input {
+  margin-right: 10px;
+}
+
+/* Hints & errors */
+.form-hint {
+  font-size: 0.9rem;
+  color: $color-primary-light;
+  margin-top: 4px;
+}
+.error-msg {
+  font-size: 0.9rem;
+  color: $color-error;
+  margin-top: 6px;
+}
+.is-invalid {
+  border-color: $color-error !important;
+  box-shadow: 0 0 0 3px rgba($color-error, 0.12) !important;
+}
+
+/* Actions */
+.form-actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: flex-start;
+  margin-top: 8px;
+}
+
+/* Responsive */
+@media (max-width: 960px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .form-card * {
+    transition: none !important;
+  }
+}
+
+// Add this near the bottom of _form.scss
+#slotHelp {
+  display: inline-flex;
+  color: $color-primary;
+  margin-top: 0;
+}
+
+#slotPicker[hidden] {
+  display: none;
+}
+
+#slotOptions label {
+  display: inline-flex;
+  gap: 0.5rem;
+}
