@@ -761,7 +761,6 @@ a:active {
 
 .course-table td {
   padding: 0.75rem 0.75rem;
-  vertical-align: top;
 }
 
 .course-table td.lvl {
@@ -769,6 +768,7 @@ a:active {
 }
 
 .course-table td.price {
+  font-weight: 800;
   white-space: nowrap;
 }
 
