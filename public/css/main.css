@@ -83,6 +83,12 @@ a:active {
   isolation: isolate;
 }
 
+.site-header .brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
 .site-header .primary-nav a {
   display: inline-block;
   line-height: 1.1;
@@ -102,11 +108,6 @@ a:active {
   border-width: 2px;
   border-style: solid;
   transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
-}
-
-.site-header .primary-nav .btn:hover,
-.site-header .primary-nav .btn:focus-visible {
-  transform: translateY(-1px);
 }
 
 .site-header .container {
@@ -133,12 +134,11 @@ a:active {
   text-decoration: none;
   line-height: 1;
   font-weight: 800;
-  transition: opacity var(--transition-base);
 }
 .brand:hover, .brand:focus-visible {
   opacity: 0.8;
   color: #63b93e;
-  transform: none;
+  transform: translateY(1px);
 }
 
 .header-logo {
@@ -259,14 +259,12 @@ a:active {
   .primary-nav {
     position: fixed;
     top: 0;
-    left: 0;
     right: 0;
-    height: 80vw;
+    height: 85vw;
     width: 100vw;
     max-width: 100vw;
     margin: 0;
-    border-radius: 0;
-    background: #0324be;
+    background: linear-gradient(45deg, rgb(2.4, 28.8, 152) 30%, rgb(78.6, 101.7, 209.5) 80%);
     color: #ffffff;
     border-bottom: 1px solid #e7eaee;
     box-shadow: 0 12px 24px rgba(0, 0, 0, 0.06);
@@ -284,7 +282,8 @@ a:active {
   .primary-nav ul {
     display: grid;
     align-content: center;
-    justify-content: center;
+    justify-content: space-evenly;
+    height: 85vw;
     gap: 8px;
     padding: 12px clamp(16px, 4vw, 24px);
     margin: 0;
@@ -307,6 +306,7 @@ a:active {
     position: fixed;
     top: 12px;
     right: 12px;
+    align-content: space-around;
     justify-content: center;
     width: 44px;
     height: 44px;
@@ -321,7 +321,7 @@ a:active {
   }
   .brand:hover,
   .brand:focus-visible {
-    color: inherit;
+    color: #63b93e;
     letter-spacing: 0;
     font-weight: 800;
   }
