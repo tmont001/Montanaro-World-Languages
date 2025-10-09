@@ -59,6 +59,7 @@ $form-control-padding: 10px 12px;
 .form-card input:not([type="checkbox"]):not([type="radio"]),
 .form-card select,
 .form-card textarea {
+  color: $color-primary;
   width: 100%;
   border: 1px solid $grey-light-1;
   background: $white;
