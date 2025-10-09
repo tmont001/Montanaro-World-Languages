@@ -592,6 +592,8 @@ a:active {
 }
 
 .card {
+  display: grid;
+  align-items: stretch;
   background: #ffffff;
   border: 1px solid #e7eaee;
   border-radius: 16px;
