@@ -592,8 +592,6 @@ a:active {
 }
 
 .card {
-  display: grid;
-  align-items: stretch;
   background: #ffffff;
   border: 1px solid #e7eaee;
   border-radius: 16px;
@@ -1038,6 +1036,7 @@ a:active {
 .form-card input:not([type=checkbox]):not([type=radio]),
 .form-card select,
 .form-card textarea {
+  color: #0324be;
   width: 100%;
   border: 1px solid #e7eaee;
   background: #ffffff;
