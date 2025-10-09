@@ -341,6 +341,16 @@
         expandBtn.addEventListener("click", () => setAll(true));
         collapseBtn.addEventListener("click", () => setAll(false));
       })();
+
+      // FIXED: Responsive navigation
+      const navBtn = document.querySelector(".nav-toggle");
+      const nav = document.querySelector(".primary-nav");
+      if (navBtn && nav) {
+        navBtn.addEventListener("click", () => {
+          const isOpen = nav.classList.toggle("open");
+          navBtn.setAttribute("aria-expanded", isOpen);
+        });
+      }
     </script>
   </body>
 </html>
