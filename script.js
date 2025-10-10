@@ -182,6 +182,155 @@ document.addEventListener("DOMContentLoaded", () => {
   if (initial) activateTab(initial.getAttribute("aria-controls"));
 });
 
+// ---------- ADD TO CALENDAR (ICS) ----------
+(function () {
+  // Map iCal weekday abbreviations to JS day numbers
+  const DAY_MAP = { SU: 0, MO: 1, TU: 2, WE: 3, TH: 4, FR: 5, SA: 6 };
+
+  // Find the first BYDAY match on/after a given date
+  function nextByDayOnOrAfter(baseDate, bydays) {
+    const start = new Date(
+      baseDate.getFullYear(),
+      baseDate.getMonth(),
+      baseDate.getDate()
+    );
+    for (let i = 0; i < 14; i++) {
+      const d = new Date(start);
+      d.setDate(start.getDate() + i);
+      const jsDay = d.getDay();
+      if (bydays.some((bd) => DAY_MAP[bd] === jsDay)) return d;
+    }
+    return start;
+  }
+
+  function pad2(n) {
+    return String(n).padStart(2, "0");
+  }
+  function dtLocalNY(date, timeHHmm) {
+    // Build a "floating" local datetime (no 'Z'), which most calendars accept with TZID
+    const [hh, mm] = timeHHmm.split(":").map(Number);
+    return (
+      date.getFullYear() +
+      pad2(date.getMonth() + 1) +
+      pad2(date.getDate()) +
+      "T" +
+      pad2(hh) +
+      pad2(mm) +
+      "00"
+    );
+  }
+
+  function sanitizeFileName(s) {
+    return s.replace(/[^\w\-]+/g, "_").slice(0, 80);
+  }
+
+  // Simple VTIMEZONE for America/New_York (covers modern clients well)
+  const VTIMEZONE_NY = [
+    "BEGIN:VTIMEZONE",
+    "TZID:America/New_York",
+    "X-LIC-LOCATION:America/New_York",
+    "BEGIN:DAYLIGHT",
+    "TZOFFSETFROM:-0500",
+    "TZOFFSETTO:-0400",
+    "TZNAME:EDT",
+    "DTSTART:19700308T020000",
+    "RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=2SU",
+    "END:DAYLIGHT",
+    "BEGIN:STANDARD",
+    "TZOFFSETFROM:-0400",
+    "TZOFFSETTO:-0500",
+    "TZNAME:EST",
+    "DTSTART:19701101T020000",
+    "RRULE:FREQ=YEARLY;BYMONTH=11;BYDAY=1SU",
+    "END:STANDARD",
+    "END:VTIMEZONE",
+  ].join("\r\n");
+
+  function buildICS({
+    title,
+    bydayStr,
+    startTime,
+    endTime,
+    anchorDate,
+    count = 20,
+  }) {
+    const bydays = bydayStr.split(",").map((s) => s.trim());
+    const base = new Date(anchorDate + "T00:00:00");
+    const first = nextByDayOnOrAfter(base, bydays);
+
+    const dtStartLocal = dtLocalNY(first, startTime);
+    const dtEndLocal = dtLocalNY(first, endTime);
+
+    const uid =
+      Date.now() +
+      "-" +
+      Math.random().toString(16).slice(2) +
+      "@montanarowlanguages";
+
+    const vevent = [
+      "BEGIN:VEVENT",
+      `UID:${uid}`,
+      `DTSTAMP:${dtLocalNY(new Date(), "00:00")}`,
+      "CLASS:PUBLIC",
+      "TRANSP:OPAQUE",
+      `SUMMARY:${title}`,
+      `DTSTART;TZID=America/New_York:${dtStartLocal}`,
+      `DTEND;TZID=America/New_York:${dtEndLocal}`,
+      // 10 weeks × 2 sessions/week = 20 occurrences
+      `RRULE:FREQ=WEEKLY;BYDAY=${bydays.join(",")};COUNT=${count};WKST=SU`,
+      "END:VEVENT",
+    ].join("\r\n");
+
+    const ics = [
+      "BEGIN:VCALENDAR",
+      "VERSION:2.0",
+      "PRODID:-//Montanaro WL//Add to Calendar//EN",
+      "CALSCALE:GREGORIAN",
+      VTIMEZONE_NY,
+      vevent,
+      "END:VCALENDAR",
+    ].join("\r\n");
+
+    return ics;
+  }
+
+  function downloadICS(filename, contents) {
+    const blob = new Blob([contents], { type: "text/calendar;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+  }
+
+  // Delegate clicks for all current/future buttons
+  document.addEventListener("click", (e) => {
+    const btn = e.target.closest(".add-ics");
+    if (!btn) return;
+
+    const title = btn.dataset.title || "Course (Live Online)";
+    const byday = btn.dataset.byday || "MO,WE"; // e.g., "MO,WE" or "TU,TH"
+    const start = btn.dataset.start || "19:00"; // "HH:MM" 24h
+    const end = btn.dataset.end || "20:00";
+    const date = btn.dataset.date || "2025-11-03"; // anchor week (any day in the first week)
+
+    const ics = buildICS({
+      title,
+      bydayStr: byday,
+      startTime: start,
+      endTime: end,
+      anchorDate: date,
+      count: 20,
+    });
+
+    const fname = sanitizeFileName(`${title}-${byday}-MWL.ics`);
+    downloadICS(fname, ics);
+  });
+})();
+
 //Nav Toggle
 const toggle = document.querySelector(".nav-toggle");
 const nav = document.querySelector(".primary-nav");
